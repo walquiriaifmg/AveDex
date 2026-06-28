@@ -9,7 +9,6 @@ def exibir_menu():
     print("=" * 50)
     print("1 - Listar aves")
     print("2 - Ver detalhes de uma ave")
-    print("3 - Sobre a AveDex")
     print("0 - Sair")
 
 
