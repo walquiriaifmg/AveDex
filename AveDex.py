@@ -103,3 +103,6 @@ while opcao_menu != "0":
 
     if opcao_menu != "0":
         pausar()
+nomes_aves = ["Bem-te-vi", "Canário-da-terra", "João-de-barro"]
+for nome_ave in nomes_aves:
+print(nome_ave)
