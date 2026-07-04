@@ -1,83 +1,112 @@
-def pausar():
-    input("\nPressione ENTER para voltar ao menu...")
+def exibir_linha():
+    print("=" * 50)
 
 
 def exibir_menu():
     print()
-    print("=" * 50)
+    exibir_linha()
     print("AVEDEX - MENU PRINCIPAL")
-    print("=" * 50)
-    print("1 - Listar aves")
-    print("2 - Ver detalhes de uma ave")
+    exibir_linha()
+    print("1 - Ver mensagem de boas-vindas")
+    print("2 - Listar aves")
+    print("3 - Ver detalhes de uma ave")
+    print("4 - Sobre a AveDex")
     print("0 - Sair")
+
+
+def mostrar_boas_vindas(nome_usuario):
+    print(f"Olá, {nome_usuario}!")
+    print("Seja bem-vindo(a) à AveDex.")
+    print("Aqui vamos conhecer aves e praticar boas práticas.")
 
 
 def listar_aves(catalogo):
     print()
-    print("=" * 50)
+    exibir_linha()
     print("AVES CADASTRADAS")
-    print("=" * 50)
+    exibir_linha()
+
     for ave in catalogo:
-        print(f"{ave['id']} - {ave['nome_popular']}")
+        print(f"{ave['codigo']} - {ave['nome_popular']}")
 
 
-def buscar_ave_por_id(catalogo, id_procurado):
+def buscar_ave_por_codigo(catalogo, codigo_procurado):
     for ave in catalogo:
-        if str(ave["id"]) == id_procurado:
+        if ave["codigo"] == codigo_procurado:
             return ave
     return None
 
 
-def exibir_detalhes_ave(ave):
+def exibir_detalhes(ave):
     print()
-    print("=" * 50)
+    exibir_linha()
     print("DETALHES DA AVE")
-    print("=" * 50)
-    print(f"ID: {ave['id']}")
+    exibir_linha()
     print(f"Nome popular: {ave['nome_popular']}")
     print(f"Nome científico: {ave['nome_cientifico']}")
     print(f"Habitat: {ave['habitat']}")
     print(f"Alimentação: {ave['alimentacao']}")
-    print(f"Curiosidade: {ave.get('curiosidade', 'Não informada')}")
+    print(f"Curiosidade: {ave['curiosidade']}")
 
 
-def selecionar_ave_por_id(catalogo):
-    listar_aves(catalogo)
-    id_escolhido = input("\nDigite o ID da ave: ").strip()
-    ave_encontrada = buscar_ave_por_id(catalogo, id_escolhido)
+def mostrar_sobre():
+    print("Sobre a AveDex:")
+    print("A AveDex é um catálogo interativo de aves.")
+    print("O projeto evolui durante a disciplina de Boas Práticas.")
 
-    if ave_encontrada is None:
-        print("Ave não encontrada. Confira o ID informado.")
-    else:
-        exibir_detalhes_ave(ave_encontrada)
+
+def pausar():
+    input("\nPressione ENTER para voltar ao menu...")
 
 
 catalogo_aves = [
     {
-        "id": 1,
+        "codigo": "1",
         "nome_popular": "Bem-te-vi",
         "nome_cientifico": "Pitangus sulphuratus",
         "habitat": "Áreas abertas, cidades e bordas de florestas",
         "alimentacao": "Insetos, frutos e pequenos animais",
-        "curiosidade": "Seu canto parece dizer o próprio nome."
+        "curiosidade": "Seu canto lembra a expressão bem-te-vi."
     },
     {
-        "id": 2,
+        "codigo": "2",
+        "nome_popular": "Canário-da-terra",
+        "nome_cientifico": "Sicalis flaveola",
+        "habitat": "Campos, áreas abertas e ambientes rurais",
+        "alimentacao": "Sementes e pequenos insetos",
+        "curiosidade": "O macho possui plumagem amarela intensa."
+    },
+    {
+        "codigo": "3",
         "nome_popular": "João-de-barro",
         "nome_cientifico": "Furnarius rufus",
         "habitat": "Campos, cidades e áreas rurais",
-        "alimentacao": "Insetos e outros invertebrados",
-        "curiosidade": "É conhecido por construir ninhos de barro."
+        "alimentacao": "Insetos e outros pequenos invertebrados",
+        "curiosidade": "Constrói um ninho de barro característico."
     },
     {
-        "id": 3,
-        "nome_popular": "Canário-da-terra",
-        "nome_cientifico": "Sicalis flaveola",
-        "habitat": "Campos e áreas abertas",
-        "alimentacao": "Sementes e pequenos insetos",
-        "curiosidade": "Possui canto forte e melodioso."
+        "codigo": "4",
+        "nome_popular": "Arara-azul",
+        "nome_cientifico": "Anodorhynchus hyacinthinus",
+        "habitat": "Pantanal, Cerrado e áreas de palmeiras",
+        "alimentacao": "Especializada em frutos de palmeiras",
+        "curiosidade": "Encontra-se ameaçada de extinção devido à destruição de seus hábitats e ao comércio ilegal."
+    },
+    {
+        "codigo": "5",
+        "nome_popular": "Tucano-de-bico-preto",
+        "nome_cientifico": "Ramphastos vitellinus",
+        "habitat": "Comum na copa de florestas úmidas, tanto em seu interior quanto nas bordas, e em capoeiras altas.",
+        "alimentacao": "Frutos e artrópodes em geral",
+        "curiosidade": "Seu nome científico significa: Ave de cor laranja com nariz grande como uma espada."
     }
 ]
+
+print("=" * 50)
+print("AVEDEX")
+print("=" * 50)
+
+nome_usuario = input("Digite seu nome: ").strip()
 
 opcao_menu = ""
 
@@ -85,87 +114,40 @@ while opcao_menu != "0":
     exibir_menu()
     opcao_menu = input("Escolha uma opção: ").strip()
 
+    print()
+
     if opcao_menu == "1":
-        listar_aves(catalogo_aves)
+        mostrar_boas_vindas(nome_usuario)
 
     elif opcao_menu == "2":
         listar_aves(catalogo_aves)
+
     elif opcao_menu == "3":
-        print("A AveDex é um catálogo interativo de aves.")
-        print("Aos poucos, vamos adicionar busca, comparação, documentação e testes.")
+        listar_aves(catalogo_aves)
+
+        codigo_escolhido = input(
+            "\nDigite o código da ave: "
+        ).strip()
+
+        ave_encontrada = buscar_ave_por_codigo(
+            catalogo_aves,
+            codigo_escolhido
+        )
+
+        if ave_encontrada is not None:
+            exibir_detalhes(ave_encontrada)
+        else:
+            print("Ave não encontrada. Confira o código informado.")
+
+    elif opcao_menu == "4":
+        mostrar_sobre()
 
     elif opcao_menu == "0":
-        print("Encerrando a AveDex. Até logo!")
+        print("Encerrando a AveDex.")
+        print(f"Até logo, {nome_usuario}!")
 
     else:
-        print("Opção inválida. Digite apenas 0, 1, 2 ou 3.")
+        print("Opção inválida. Digite apenas 0, 1, 2, 3 ou 4.")
 
     if opcao_menu != "0":
         pausar()
-nomes_aves = ["Bem-te-vi", "Canário-da-terra", "João-de-barro"]
-for nome_ave in nomes_aves:
-    print(nome_ave)
-
-ave = {
-    "codigo": "1",
-    "nome_popular": "Bem-te-vi",
-    "nome_cientifico": "Pitangus sulphuratus",
-    "habitat": "Áreas abertas e cidades",
-    "alimentacao": "Insetos, frutos e pequenos animais",
-    "curiosidade": "Seu canto lembra a expressão bem-te-vi."
-}
-print(ave["nome_popular"])
-catalogo_aves = [
-    {"codigo": "1", "nome_popular": "Bem-te-vi"},
-    {"codigo": "2", "nome_popular": "Canário-da-terra"}
-]
-for ave in catalogo_aves:
-    print(f"{ave['codigo']} - {ave['nome_popular']}")
-
-def exibir_mensagem_boas_vindas(nome_usuario):
-    print(f"Olá, {nome_usuario}!")
-    print("Seja bem-vindo(a) à AveDex.")
-
-def exibir_linha():
-    print("=" * 40)
-def exibir_menu():
-    print()
-    exibir_linha()
-    print("MENU PRINCIPAL")
-    exibir_linha()
-    print("1 - Ver mensagem de boas-vindas")
-    print("2 - Listar aves")
-    print("3 - Ver uma curiosidade sobre aves")
-    print("4 - Sobre a AveDex")
-    print("0 - Sair")
-def mostrar_boas_vindas(nome_usuario):
-    print(f"Olá, {nome_usuario}!")
-    print("Seja bem-vindo(a) à AveDex.")
-    print("Aqui vamos conhecer aves e praticar boas práticas.")
-def mostrar_ave_inicial():
-    print("Ave escolhida: Bem-te-vi")
-    print("Nome científico: Pitangus sulphuratus")
-    print("O bem-te-vi é uma das aves mais conhecidas do Brasil.")
-def mostrar_curiosidade():
-    print("Curiosidade:")
-    print("Muitas aves ajudam no equilíbrio ambiental ao dispersar sementes.")
-def mostrar_sobre():
-    print("Sobre a AveDex:")
-    print("A AveDex será um catálogo interativo de aves.")
-def pausar():
-    input("\nPressione ENTER para voltar ao menu...")
-
-if opcao_menu == "1":
-    mostrar_boas_vindas(nome_usuario)
-elif opcao_menu == "2":
-    def listar_aves(catalogo):
-        print()
-        exibir_linha()
-        print("AVES CADASTRADAS")
-        exibir_linha()
-    for ave in catalogo:
-        print(f"{ave['codigo']} - {ave['nome_popular']}")
-elif opcao_menu == "3":
-    mostrar_curiosidade()
-elif opcao_menu == "4":
-    mostrar_sobre() 
