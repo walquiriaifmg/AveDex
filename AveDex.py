@@ -89,8 +89,7 @@ while opcao_menu != "0":
         listar_aves(catalogo_aves)
 
     elif opcao_menu == "2":
-        selecionar_ave_por_id(catalogo_aves)
-
+        listar_aves(catalogo_aves)
     elif opcao_menu == "3":
         print("A AveDex é um catálogo interativo de aves.")
         print("Aos poucos, vamos adicionar busca, comparação, documentação e testes.")
@@ -135,7 +134,7 @@ def exibir_menu():
     print("MENU PRINCIPAL")
     exibir_linha()
     print("1 - Ver mensagem de boas-vindas")
-    print("2 - Conhecer uma ave")
+    print("2 - Listar aves")
     print("3 - Ver uma curiosidade sobre aves")
     print("4 - Sobre a AveDex")
     print("0 - Sair")
@@ -159,7 +158,13 @@ def pausar():
 if opcao_menu == "1":
     mostrar_boas_vindas(nome_usuario)
 elif opcao_menu == "2":
-    mostrar_ave_inicial()
+    def listar_aves(catalogo):
+        print()
+        exibir_linha()
+        print("AVES CADASTRADAS")
+        exibir_linha()
+    for ave in catalogo:
+        print(f"{ave['codigo']} - {ave['nome_popular']}")
 elif opcao_menu == "3":
     mostrar_curiosidade()
 elif opcao_menu == "4":
