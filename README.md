@@ -10,5 +10,12 @@ Boas Práticas de Programação.
 ```bash
 python avedex.py
 ```
+## Fontes dos dados
+- Nome da instituição ou site: https://www.wikiaves.com.br/index.php
+## Evolução do projeto
+Nesta versão, as aves foram organizadas em uma lista de
+dicionários e as funcionalidades foram separadas em funções. Além disso foram adicionadas novas aves.
+
+
 ## Autor
 Wlquiria Mafado
