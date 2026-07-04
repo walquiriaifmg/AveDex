@@ -15,6 +15,12 @@ python avedex.py
 ## Evolução do projeto
 Nesta versão, as aves foram organizadas em uma lista de
 dicionários e as funcionalidades foram separadas em funções. Além disso foram adicionadas novas aves.
+## Testes manuais realizados
+- [x] Listagem das aves
+- [x] Consulta de código existente
+- [x] Consulta de código inexistente
+- [x] Tratamento de opção inválida
+- [x] Encerramento do programa
 
 
 ## Autor
