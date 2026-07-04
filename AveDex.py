@@ -7,10 +7,9 @@ def exibir_menu():
     exibir_linha()
     print("AVEDEX - MENU PRINCIPAL")
     exibir_linha()
-    print("1 - Ver mensagem de boas-vindas")
-    print("2 - Listar aves")
-    print("3 - Ver detalhes de uma ave")
-    print("4 - Sobre a AveDex")
+    print("1 - Listar aves")
+    print("2 - Ver detalhes de uma ave")
+    print("3 - Sobre a AveDex")
     print("0 - Sair")
 
 
@@ -22,10 +21,9 @@ def mostrar_boas_vindas(nome_usuario):
 
 def listar_aves(catalogo):
     print()
-    exibir_linha()
+    print("=" * 50)
     print("AVES CADASTRADAS")
-    exibir_linha()
-
+    print("=" * 50)
     for ave in catalogo:
         print(f"{ave['codigo']} - {ave['nome_popular']}")
 
@@ -117,13 +115,9 @@ while opcao_menu != "0":
     print()
 
     if opcao_menu == "1":
-        mostrar_boas_vindas(nome_usuario)
-
-    elif opcao_menu == "2":
         listar_aves(catalogo_aves)
 
-    elif opcao_menu == "3":
-        listar_aves(catalogo_aves)
+    elif opcao_menu == "2": 
 
         codigo_escolhido = input(
             "\nDigite o código da ave: "
@@ -139,7 +133,7 @@ while opcao_menu != "0":
         else:
             print("Ave não encontrada. Confira o código informado.")
 
-    elif opcao_menu == "4":
+    elif opcao_menu == "3":
         mostrar_sobre()
 
     elif opcao_menu == "0":
