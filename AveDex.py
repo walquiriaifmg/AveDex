@@ -94,11 +94,11 @@ catalogo_aves = [
     },
     {
         "codigo": "5",
-        "nome_popular": "Tucano-de-bico-preto",
-        "nome_cientifico": "Ramphastos vitellinus",
-        "habitat": "Comum na copa de florestas úmidas, tanto em seu interior quanto nas bordas, e em capoeiras altas.",
-        "alimentacao": "Frutos e artrópodes em geral",
-        "curiosidade": "Seu nome científico significa: Ave de cor laranja com nariz grande como uma espada."
+        "nome_popular": "Águia-solitária",
+        "nome_cientifico": "Urubitinga solitaria",
+        "habitat": "Habita florestas montanhosas úmidas e de pinheiros.",
+        "alimentacao": "Alimenta-se de lagartos, serpentes e outros pequenos vertebrados.",
+        "curiosidade": "Constrói o ninho em uma árvore alta, usando ramos e gravetos, geralmente botando apenas um ovo."
     }
 ]
 
