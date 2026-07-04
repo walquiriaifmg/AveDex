@@ -105,4 +105,25 @@ while opcao_menu != "0":
         pausar()
 nomes_aves = ["Bem-te-vi", "Canário-da-terra", "João-de-barro"]
 for nome_ave in nomes_aves:
-print(nome_ave)
+    print(nome_ave)
+
+ave = {
+    "codigo": "1",
+    "nome_popular": "Bem-te-vi",
+    "nome_cientifico": "Pitangus sulphuratus",
+    "habitat": "Áreas abertas e cidades",
+    "alimentacao": "Insetos, frutos e pequenos animais",
+    "curiosidade": "Seu canto lembra a expressão bem-te-vi."
+}
+print(ave["nome_popular"])
+catalogo_aves = [
+    {"codigo": "1", "nome_popular": "Bem-te-vi"},
+    {"codigo": "2", "nome_popular": "Canário-da-terra"}
+]
+for ave in catalogo_aves:
+    print(f"{ave['codigo']} - {ave['nome_popular']}")
+
+def exibir_mensagem_boas_vindas(nome_usuario):
+    print(f"Olá, {nome_usuario}!")
+    print("Seja bem-vindo(a) à AveDex.")
+
