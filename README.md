@@ -12,6 +12,7 @@ python avedex.py
 ```
 ## Fontes dos dados
 - Nome da instituição ou site: https://www.wikiaves.com.br/index.php
+
 ## Evolução do projeto
 Nesta versão, as aves foram organizadas em uma lista de
 dicionários e as funcionalidades foram separadas em funções. Além disso foram adicionadas novas aves.
@@ -29,6 +30,16 @@ dicionários e as funcionalidades foram separadas em funções. Além disso fora
 - [x] Seleção de ave por ID inexistente
 - [x] Opção inválida no menu
 - [x] Encerramento do programa
+
+## Testes manuais realizados aula 8
+- [x] Busca por parte do nome popular
+- [x] Busca ignorando acentos
+- [x] Busca por família
+- [x] Busca por ordem
+- [x] Busca por dieta
+- [x] Busca sem resultados
+- [x] Busca com entrada vazia
+- [x] Tentativa de abrir ID fora dos resultados
 
 ## Autor
 Wlquiria Mafado
