@@ -1,7 +1,24 @@
+import unicodedata # Importa a biblioteca que permite manipular caracteres Unicode, 
+#como acentos e sinais diacríticos.
+
 # Função que pausa o programa até o usuário pressionar ENTER.
 def pausar():
     input("\nPressione ENTER para voltar ao menu...")
 
+def normalizar_texto(texto):
+# Garante que o valor recebido será tratado como texto.
+    texto = str(texto)
+    # Converte para minúsculas e remove espaços no início e no final.
+    texto = texto.lower().strip()
+    # Separa as letras dos sinais de acentuação.
+    # Exemplo: "á" passa a ser tratado como "a" + acento.
+    texto = unicodedata.normalize("NFD", texto)
+    # Monta um novo texto removendo os sinais de acentuação.
+    texto = "".join(
+        caractere for caractere in texto
+        if unicodedata.category(caractere) != "Mn"
+)
+    return texto
 
 # Função responsável por exibir o menu principal.
 def exibir_menu():
@@ -76,6 +93,7 @@ def selecionar_ave_por_id(catalogo):
     else:
         # Exibe os detalhes da ave encontrada.
         exibir_detalhes_ave(ave_encontrada)
+        
 
 def buscar_aves_por_nome(catalogo, termo_busca):
 # Criamos uma lista vazia para guardar as aves encontradas.
