@@ -119,8 +119,12 @@ def exibir_detalhes_ave(ave):
     print(f"ID: {ave['id']}")
     print(f"Nome popular: {ave['nome_popular']}")
     print(f"Nome científico: {ave['nome_cientifico']}")
+    print(f"Ordem: {ave['ordem']}")
+    print(f"Família: {ave['familia']}")
+    print(f"Dieta: {ave['dieta_tipo']}")
     print(f"Habitat: {ave['habitat']}")
     print(f"Alimentação: {ave['alimentacao']}")
+
 
     # Caso a curiosidade não exista, exibe "Não informada".
     print(f"Curiosidade: {ave.get('curiosidade', 'Não informada')}")
@@ -238,11 +242,46 @@ catalogo_aves = [
         "habitat": "Campos e áreas abertas",
         "alimentacao": "Sementes e pequenos insetos",
         "curiosidade": "Possui canto forte e melodioso."
+    },
+    {
+        "id": 4,
+        "nome_popular": "Arara-azul",
+        "nome_cientifico": "Anodorhynchus hyacinthinus",
+        "ordem": "Psittaciformes",
+        "familia": "Psittacidae",
+        "dieta_tipo": "Frugívora e granívora",
+        "habitat": "Pantanal, Cerrado e áreas de palmeiras",
+        "alimentacao": "Especializada em frutos de palmeiras",
+        "curiosidade": "Encontra-se ameaçada de extinção devido à destruição de seus hábitats e ao "
+        "\ncomércio ilegal."
+    },
+    { "id": 5,
+        "nome_popular": "Águia-solitária",
+        "nome_cientifico": "Urubitinga solitaria",
+        "ordem": "Accipitriformes",
+        "familia": "Accipitridae",
+        "dieta_tipo": "Carnívora",
+        "habitat": "Habita florestas montanhosas úmidas e de pinheiros.",
+        "alimentacao": "Alimenta-se de lagartos, serpentes e outros pequenos vertebrados.",
+        "curiosidade": "Constrói o ninho em uma árvore alta, usando ramos e gravetos, "
+        "\ngeralmente botando apenas um ovo."
+    },
+    {"id": 6,
+        "nome_popular": "Corujinha-do-mato",
+        "nome_cientifico": "Megascops choliba",
+        "ordem": "Strigiformes",
+        "familia": "Strigidae",
+        "dieta_tipo": "Insectívora",
+        "habitat": "Habita cidades, parques urbanos e fazendas, e também habita capoeiras e beiras de"
+        "matas secas ou úmidas.",
+        "alimentacao": "Alimenta-se principalmente de grandes artrópodes, como gafanhotos, aranhas, "
+        "\nescorpiões e mariposas, especialmente próximos a postes de iluminação. "
+        "\nTambém consome pequenos vertebrados, como camundongos, morcegos, rãs e, ocasionalmente, minhocas.",
+        "curiosidade": "Voa sem criar grandes turbulências, formadoras dos ruídos característicos do "
+        "\nrufar de asas. Com isso, aproxima-se da presa em silêncio, tendo localizado-a antes pela visão "
+        "\nou pela audição apurada."
     }
 ]
-
-resultados_teste = buscar_aves_por_nome(catalogo_aves, "barro")
-print(resultados_teste)
 
 # Variável que armazenará a opção escolhida pelo usuário.
 opcao_menu = ""
@@ -271,7 +310,7 @@ while opcao_menu != "0":
     # Opção 4: mostrar informações sobre o sistema.
     elif opcao_menu == "4":
         print("A AveDex é um catálogo interativo de aves.")
-        print("Aos poucos, vamos adicionar busca, comparação, documentação e testes.")
+        print("Em breve, teremos comparação, imagens, sons e dados em arquivo JSON.")
 
     # Opção 0: encerrar o programa.
     elif opcao_menu == "0":
