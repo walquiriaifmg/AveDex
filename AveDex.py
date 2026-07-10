@@ -77,6 +77,21 @@ def selecionar_ave_por_id(catalogo):
         # Exibe os detalhes da ave encontrada.
         exibir_detalhes_ave(ave_encontrada)
 
+def buscar_aves_por_nome(catalogo, termo_busca):
+# Criamos uma lista vazia para guardar as aves encontradas.
+    resultados = []
+    # Percorremos cada ave cadastrada no catálogo.
+    for ave in catalogo:
+    # Convertemos o nome da ave para minúsculas. Isso evita diferença entre "Bem" e "bem".
+        nome = ave["nome_popular"].lower()
+        # Também convertemos o termo digitado para minúsculas.
+        termo = termo_busca.lower()
+        # O operador "in" verifica se um texto aparece dentro de outro.
+        # Exemplo: "barro" está dentro de "joão-de-barro".
+        if termo in nome:
+            resultados.append(ave)
+    # Ao final, devolvemos a lista de aves encontradas.
+    return resultados
 
 # Lista contendo todas as aves cadastradas. Cada ave é representada por um dicionário.
 catalogo_aves = [
@@ -126,10 +141,11 @@ catalogo_aves = [
     }
 ]
 
+resultados_teste = buscar_aves_por_nome(catalogo_aves, "barro")
+print(resultados_teste)
 
 # Variável que armazenará a opção escolhida pelo usuário.
 opcao_menu = ""
-
 
 # Laço principal do programa. Continua executando até que o usuário escolha a opção 0.
 while opcao_menu != "0":
@@ -156,12 +172,15 @@ while opcao_menu != "0":
     # Opção 0: encerrar o programa.
     elif opcao_menu == "0":
         print("Encerrando a AveDex. Até logo!")
-
+    
     # Caso o usuário digite uma opção inexistente.
     else:
         print("Opção inválida. Digite apenas 0, 1, 2 ou 3.")
 
     # Após executar qualquer opção (exceto sair), o programa espera o usuário pressionar ENTER
     # antes de voltar ao menu principal.
+    
     if opcao_menu != "0":
         pausar()
+        
+  
