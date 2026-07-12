@@ -280,6 +280,20 @@ catalogo_aves = [
         "curiosidade": "Voa sem criar grandes turbulências, formadoras dos ruídos característicos do "
         "\nrufar de asas. Com isso, aproxima-se da presa em silêncio, tendo localizado-a antes pela visão "
         "\nou pela audição apurada."
+    },
+    {
+        "id": 7,
+        "nome_popular": "Pica-pau-de-cabeça-amarela",
+        "nome_cientifico": "Celeus flavescens",
+        "ordem": "Piciformes",
+        "familia": "Picidae",
+        "dieta_tipo": "Insetívora",
+        "habitat": "Habita florestas tropicais e subtropicais, principalmente em áreas de cerrado e matas "
+        "secundárias.",
+        "alimentacao": "Alimenta-se principalmente de insetos, especialmente formigas e cupins, "
+        "\nque captura perfurando a madeira com seu bico forte e longo.",
+        "curiosidade": "É conhecido por seu comportamento territorial e por emitir sons altos e "
+        "distintivos, que podem ser ouvidos a longas distâncias."
     }
 ]
 
@@ -326,4 +340,4 @@ while opcao_menu != "0":
     if opcao_menu != "0":
         pausar()
         
-  
+ 
