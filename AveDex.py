@@ -10,14 +10,13 @@ def normalizar_texto(texto):
     # Garante que o valor recebido será tratado como texto.
     texto = str(texto)
 
-    # Converte para minúsculas e remove espaços no início e no final.
+    # Converte para minúsculas e remove espaços.
     texto = texto.lower().strip()
 
     # Separa as letras dos sinais de acentuação.
-    # Exemplo: "á" passa a ser tratado como "a" + acento.
     texto = unicodedata.normalize("NFD", texto)
 
-    # Monta um novo texto removendo os sinais de acentuação.
+    # Remove os sinais de acentuação.
     texto = "".join(
         caractere
         for caractere in texto
@@ -27,12 +26,9 @@ def normalizar_texto(texto):
     return texto
 
 
-# Função responsável por exibir o menu principal.
+# Exibe o menu principal.
 def exibir_menu():
-    # Exibe uma linha em branco antes do menu.
     print()
-
-    # Exibe o cabeçalho do menu.
     print("=" * 50)
     print("AVEDEX - MENU PRINCIPAL")
     print("=" * 50)
@@ -46,22 +42,20 @@ def exibir_menu():
     print("0 - Sair")
 
 
-# Função que percorre a lista de aves e exibe apenas o ID
-# e o nome popular de cada uma.
+# Lista todas as aves cadastradas.
 def listar_aves(catalogo):
     print()
     print("=" * 50)
     print("AVES CADASTRADAS")
     print("=" * 50)
 
-    # Percorre todas as aves cadastradas no catálogo.
+    # Percorre todas as aves do catálogo.
     for ave in catalogo:
         print(f"{ave['id']} - {ave['nome_popular']}")
 
 
-# Função que procura uma ave pelo ID informado pelo usuário.
+# Procura uma ave pelo ID.
 def buscar_ave_por_id(catalogo, id_procurado):
-
     # Percorre todas as aves do catálogo.
     for ave in catalogo:
 
@@ -69,22 +63,22 @@ def buscar_ave_por_id(catalogo, id_procurado):
         if str(ave["id"]) == id_procurado:
             return ave
 
-    # Caso nenhuma ave seja encontrada.
+    # Retorna None caso não encontre a ave.
     return None
 
 
+# Busca aves pelo nome, família, ordem ou dieta.
 def buscar_aves(catalogo, termo_busca):
-    # Lista que receberá todas as aves encontradas.
+    # Lista que armazenará os resultados.
     resultados = []
 
-    # Normalizamos o termo digitado uma única vez.
+    # Normaliza o termo digitado pelo usuário.
     termo = normalizar_texto(termo_busca)
 
-    # Percorremos todas as aves do catálogo.
+    # Percorre todas as aves cadastradas.
     for ave in catalogo:
 
-        # Separamos os campos em que a busca será feita.
-        # Usamos get() para evitar erro caso alguma chave esteja ausente.
+        # Campos utilizados na pesquisa.
         campos_busca = [
             ave.get("nome_popular", ""),
             ave.get("nome_cientifico", ""),
@@ -93,32 +87,32 @@ def buscar_aves(catalogo, termo_busca):
             ave.get("dieta_tipo", "")
         ]
 
-        # Juntamos todos os campos em um único texto.
-        # Assim, a busca pode procurar em todos eles de uma vez.
+        # Junta os campos em um único texto.
         texto_busca = " ".join(campos_busca)
 
-        # Normalizamos o texto completo da ave.
+        # Normaliza o texto da ave.
         texto_busca = normalizar_texto(texto_busca)
 
-        # Se o termo digitado estiver no texto da ave,
-        # adicionamos essa ave aos resultados.
+        # Verifica se o termo aparece no texto.
         if termo in texto_busca:
             resultados.append(ave)
 
     return resultados
 
 
+# Exibe os resultados encontrados na busca.
 def exibir_resultados_busca(resultados):
     print()
     print("=" * 50)
     print("RESULTADOS DA BUSCA")
     print("=" * 50)
 
-    # Se a lista estiver vazia, nada foi encontrado.
+    # Verifica se nenhum resultado foi encontrado.
     if len(resultados) == 0:
         print("Nenhuma ave encontrada.")
+
     else:
-        # Se houver resultados, mostramos cada ave encontrada.
+        # Exibe cada ave encontrada.
         for ave in resultados:
             print(
                 f"{ave['id']} - {ave['nome_popular']} "
@@ -126,8 +120,7 @@ def exibir_resultados_busca(resultados):
             )
 
 
-# Função responsável por mostrar todas as informações
-# da ave selecionada.
+# Exibe os detalhes completos de uma ave.
 def exibir_detalhes_ave(ave):
     print()
     print("=" * 50)
@@ -143,121 +136,131 @@ def exibir_detalhes_ave(ave):
     print(f"Habitat: {ave['habitat']}")
     print(f"Alimentação: {ave['alimentacao']}")
 
-    # Caso a curiosidade não exista, exibe "Não informada".
+    # Caso não exista curiosidade, exibe "Não informada".
     print(
         f"Curiosidade: "
         f"{ave.get('curiosidade', 'Não informada')}"
     )
 
 
-# Função que permite ao usuário escolher uma ave pelo ID.
+# Permite selecionar uma ave pelo ID.
 def selecionar_ave_por_id(catalogo):
-
-    # Primeiro exibe todas as aves disponíveis.
+    # Mostra as aves disponíveis.
     listar_aves(catalogo)
 
-    # Solicita o ID da ave ao usuário.
-    id_escolhido = input("\nDigite o ID da ave: ").strip()
+    # Solicita o ID ao usuário.
+    id_escolhido = input(
+        "\nDigite o ID da ave: "
+    ).strip()
 
-    # Procura a ave correspondente.
+    # Procura a ave pelo ID.
     ave_encontrada = buscar_ave_por_id(
         catalogo,
         id_escolhido
     )
 
-    # Verifica se a ave foi encontrada.
+    # Verifica se encontrou a ave.
     if ave_encontrada is None:
-        print("Ave não encontrada. Confira o ID informado.")
+        print(
+            "Ave não encontrada. "
+            "Confira o ID informado."
+        )
+
     else:
         # Exibe os detalhes da ave encontrada.
         exibir_detalhes_ave(ave_encontrada)
 
 
+# Busca aves pelo nome popular.
 def buscar_aves_por_nome(catalogo, termo_busca):
-    # Criamos uma lista vazia para guardar as aves encontradas.
+    # Lista que armazenará os resultados.
     resultados = []
 
-    # Percorremos cada ave cadastrada no catálogo.
+    # Percorre todas as aves.
     for ave in catalogo:
 
-        # Convertemos o nome da ave para minúsculas.
-        # Isso evita diferença entre "Bem" e "bem".
+        # Converte o nome para letras minúsculas.
         nome = ave["nome_popular"].lower()
 
-        # Também convertemos o termo digitado para minúsculas.
+        # Converte o termo pesquisado para letras minúsculas.
         termo = termo_busca.lower()
 
-        # O operador "in" verifica se um texto aparece dentro de outro.
-        # Exemplo: "barro" está dentro de "joão-de-barro".
+        # Verifica se o termo está no nome da ave.
         if termo in nome:
             resultados.append(ave)
 
-    # Ao final, devolvemos a lista de aves encontradas.
     return resultados
 
 
+# Tela responsável pela busca de aves.
 def tela_busca(catalogo):
-    # Pedimos ao usuário o texto que deseja procurar.
+    # Solicita o termo da pesquisa.
     termo = input(
         "Digite parte do nome, família, ordem ou dieta: "
     ).strip()
 
-    # Se o usuário apenas apertar ENTER,
-    # não faz sentido buscar.
+    # Verifica se o usuário não digitou nada.
     if termo == "":
-        print("Digite algum texto para realizar a busca.")
+        print(
+            "Digite algum texto para realizar a busca."
+        )
         return
 
-    # Chamamos a função que faz a busca.
-    resultados = buscar_aves(catalogo, termo)
+    # Realiza a busca.
+    resultados = buscar_aves(
+        catalogo,
+        termo
+    )
 
-    # Exibimos os resultados encontrados.
+    # Exibe os resultados.
     exibir_resultados_busca(resultados)
 
-    # Se existir pelo menos um resultado, damos a opção
-    # de abrir os detalhes de uma ave encontrada.
+    # Se houver resultados, permite visualizar detalhes.
     if len(resultados) > 0:
         escolha = input(
-            "\nDigite o ID para ver detalhes ou ENTER para voltar: "
+            "\nDigite o ID para ver detalhes "
+            "ou ENTER para voltar: "
         ).strip()
 
         if escolha != "":
-            # Aqui buscamos apenas dentro da lista de resultados.
-            # Assim, o usuário só abre uma ave que realmente
-            # apareceu na busca.
+            # Procura o ID apenas nos resultados encontrados.
             ave_encontrada = buscar_ave_por_id(
                 resultados,
                 escolha
             )
 
             if ave_encontrada is None:
-                print("ID não encontrado nos resultados.")
+                print(
+                    "ID não encontrado nos resultados."
+                )
+
             else:
-                exibir_detalhes_ave(ave_encontrada)
+                exibir_detalhes_ave(
+                    ave_encontrada
+                )
 
 
+# Retorna o valor ou "Não informado".
 def valor_ou_indisponivel(valor, unidade=""):
-    # Se o valor for None ou texto vazio, informamos isso ao usuário.
+    # Verifica se o valor está vazio.
     if valor is None or valor == "":
         return "Não informado"
 
-    # Se uma unidade foi informada, adicionamos essa unidade ao valor.
-    # Exemplo: valor 23 com unidade "cm" vira "23 cm".
+    # Adiciona a unidade ao valor.
     if unidade != "":
         return f"{valor} {unidade}"
 
-    # Se não houver unidade, retornamos o valor como texto.
+    # Retorna o valor como texto.
     return str(valor)
 
 
-def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
-    # O rótulo identifica o campo comparado.
-    # Exemplo: "Família", "Dieta" ou "Peso".
-
-    # O símbolo :<18 significa:
-    # alinhar à esquerda em um espaço de 18 caracteres.
-
-    # Isso ajuda a deixar a saída parecida com uma tabela.
+# Imprime uma linha da tabela de comparação.
+def imprimir_linha_comparacao(
+    rotulo,
+    valor_1,
+    valor_2
+):
+    # Exibe os valores alinhados em colunas.
     print(
         f"{rotulo:<18} | "
         f"{str(valor_1):<25} | "
@@ -265,6 +268,7 @@ def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
     )
 
 
+# Exibe a comparação entre duas aves.
 def exibir_comparacao_aves(ave_1, ave_2):
     # Cabeçalho da comparação.
     print()
@@ -272,7 +276,7 @@ def exibir_comparacao_aves(ave_1, ave_2):
     print("COMPARAÇÃO ENTRE AVES")
     print("=" * 78)
 
-    # Primeira linha: mostra os nomes das duas aves.
+    # Mostra os nomes das aves.
     imprimir_linha_comparacao(
         "Campo",
         ave_1["nome_popular"],
@@ -281,38 +285,42 @@ def exibir_comparacao_aves(ave_1, ave_2):
 
     print("-" * 78)
 
-    # Linhas de comparação textual.
+    # Comparação do nome científico.
     imprimir_linha_comparacao(
         "Nome científico",
         ave_1.get("nome_cientifico"),
         ave_2.get("nome_cientifico")
     )
 
+    # Comparação da ordem.
     imprimir_linha_comparacao(
         "Ordem",
         ave_1.get("ordem"),
         ave_2.get("ordem")
     )
 
+    # Comparação da família.
     imprimir_linha_comparacao(
         "Família",
         ave_1.get("familia"),
         ave_2.get("familia")
     )
 
+    # Comparação da dieta.
     imprimir_linha_comparacao(
         "Dieta",
         ave_1.get("dieta_tipo"),
         ave_2.get("dieta_tipo")
     )
 
+    # Comparação do habitat.
     imprimir_linha_comparacao(
         "Habitat",
         ave_1.get("habitat"),
         ave_2.get("habitat")
     )
 
-    # Linhas de comparação numérica com unidade.
+    # Comparação do comprimento.
     imprimir_linha_comparacao(
         "Comprimento",
         valor_ou_indisponivel(
@@ -325,6 +333,7 @@ def exibir_comparacao_aves(ave_1, ave_2):
         )
     )
 
+    # Comparação do peso.
     imprimir_linha_comparacao(
         "Peso",
         valor_ou_indisponivel(
@@ -337,6 +346,7 @@ def exibir_comparacao_aves(ave_1, ave_2):
         )
     )
 
+    # Comparação do status de conservação.
     imprimir_linha_comparacao(
         "Conservação",
         ave_1.get(
@@ -349,6 +359,7 @@ def exibir_comparacao_aves(ave_1, ave_2):
         )
     )
 
+    # Comparação do índice de conservação.
     imprimir_linha_comparacao(
         "Índice",
         ave_1.get(
@@ -362,31 +373,35 @@ def exibir_comparacao_aves(ave_1, ave_2):
     )
 
 
+# Permite escolher uma ave pelo ID.
 def escolher_ave(catalogo, mensagem):
-    # Mostra a lista de aves antes de pedir o ID.
+    # Mostra a lista de aves.
     listar_aves(catalogo)
 
-    # A mensagem muda conforme a situação.
-    # Exemplo: "Digite o ID da primeira ave".
+    # Solicita o ID da ave.
     id_escolhido = input(
         f"\n{mensagem}: "
     ).strip()
 
-    # Reaproveitamos a função que já busca ave por ID.
+    # Procura a ave pelo ID.
     ave_encontrada = buscar_ave_por_id(
         catalogo,
         id_escolhido
     )
 
-    # Se nenhuma ave for encontrada, avisamos e retornamos None.
+    # Verifica se encontrou a ave.
     if ave_encontrada is None:
-        print("Ave não encontrada. Confira o ID informado.")
+        print(
+            "Ave não encontrada. "
+            "Confira o ID informado."
+        )
         return None
 
-    # Se encontrou, devolvemos a ave escolhida.
+    # Retorna a ave encontrada.
     return ave_encontrada
 
 
+# Permite comparar duas aves.
 def comparar_duas_aves(catalogo):
     print()
     print("Escolha a primeira ave")
@@ -416,13 +431,28 @@ def comparar_duas_aves(catalogo):
     if ave_2 is None:
         return
 
-    # Se as duas aves existem,
-    # exibimos a comparação.
-    exibir_comparacao_aves(ave_1, ave_2)
+    # Verifica se o usuário escolheu a mesma ave.
+    if ave_1["id"] == ave_2["id"]:
+        print()
+        print(
+            "Aviso: você selecionou a mesma ave "
+            "nas duas opções."
+        )
+        print(
+            "Escolha duas aves diferentes "
+            "para realizar a comparação."
+        )
+        return
+
+    # Se as aves forem diferentes,
+    # exibe a comparação.
+    exibir_comparacao_aves(
+        ave_1,
+        ave_2
+    )
 
 
-# Lista contendo todas as aves cadastradas.
-# Cada ave é representada por um dicionário.
+# Catálogo de aves.
 catalogo_aves = [
     {
         # ID único da ave.
@@ -440,23 +470,28 @@ catalogo_aves = [
         "dieta_tipo": "Onívora",
 
         # Ambiente onde a ave costuma viver.
-        "habitat": "Áreas abertas, cidades e bordas de florestas",
+        "habitat": (
+            "Áreas abertas, cidades "
+            "e bordas de florestas"
+        ),
 
-        # Medidas aproximadas usadas na comparação.
+        # Medidas aproximadas.
         "comprimento_cm": 23,
         "peso_g": 68,
 
         # Situação de conservação.
-        # Nesta versão didática, usamos texto simples.
         "status_conservacao": "Pouco preocupante",
 
-        # Índice numérico que será útil futuramente na batalha.
-        # Quanto maior, maior será o nível de atenção na conservação.
+        # Índice de conservação.
         "indice_conservacao": 1,
 
         # Outros detalhes.
-        "alimentacao": "Insetos, frutos e pequenos animais",
-        "curiosidade": "Seu canto parece dizer o próprio nome."
+        "alimentacao": (
+            "Insetos, frutos e pequenos animais"
+        ),
+        "curiosidade": (
+            "Seu canto parece dizer o próprio nome."
+        )
     },
     {
         "id": 2,
@@ -469,7 +504,9 @@ catalogo_aves = [
 
         "dieta_tipo": "Insetívora",
 
-        "habitat": "Campos, cidades e áreas rurais",
+        "habitat": (
+            "Campos, cidades e áreas rurais"
+        ),
 
         "comprimento_cm": 20,
         "peso_g": 49,
@@ -477,8 +514,12 @@ catalogo_aves = [
         "status_conservacao": "Pouco preocupante",
         "indice_conservacao": 1,
 
-        "alimentacao": "Insetos e outros invertebrados",
-        "curiosidade": "É conhecido por construir ninhos de barro."
+        "alimentacao": (
+            "Insetos e outros invertebrados"
+        ),
+        "curiosidade": (
+            "É conhecido por construir ninhos de barro."
+        )
     },
     {
         "id": 3,
@@ -499,56 +540,66 @@ catalogo_aves = [
         "status_conservacao": "Pouco preocupante",
         "indice_conservacao": 1,
 
-        "alimentacao": "Sementes e pequenos insetos",
-        "curiosidade": "Possui canto forte e melodioso."
+        "alimentacao": (
+            "Sementes e pequenos insetos"
+        ),
+        "curiosidade": (
+            "Possui canto forte e melodioso."
+        )
     }
 ]
 
 
-# Variável que armazenará a opção escolhida pelo usuário.
+# Variável que armazenará a opção escolhida.
 opcao_menu = ""
 
 # Laço principal do programa.
-# Continua executando até que o usuário escolha a opção 0.
+# Continua executando até o usuário escolher 0.
 while opcao_menu != "0":
 
     # Exibe o menu principal.
     exibir_menu()
 
-    # Lê a opção digitada pelo usuário.
-    opcao_menu = input("Escolha uma opção: ").strip()
+    # Lê a opção escolhida.
+    opcao_menu = input(
+        "Escolha uma opção: "
+    ).strip()
 
     if opcao_menu == "1":
         # Lista todas as aves cadastradas.
         listar_aves(catalogo_aves)
 
     elif opcao_menu == "2":
-        # Abre a tela de busca de aves.
+        # Abre a tela de busca.
         tela_busca(catalogo_aves)
 
     elif opcao_menu == "3":
-        # Permite selecionar uma ave pelo ID
-        # e visualizar seus detalhes.
+        # Permite visualizar os detalhes de uma ave.
         selecionar_ave_por_id(catalogo_aves)
 
     elif opcao_menu == "4":
-        # Permite comparar os dados de duas aves.
+        # Permite comparar duas aves.
         comparar_duas_aves(catalogo_aves)
 
     elif opcao_menu == "5":
-        # Exibe informações sobre o projeto AveDex.
-        print("A AveDex é um catálogo interativo de aves.")
+        # Exibe informações sobre o projeto.
         print(
-            "Em breve, teremos batalha, imagens, sons "
-            "e dados em arquivo JSON."
+            "A AveDex é um catálogo interativo de aves."
+        )
+        print(
+            "Em breve, teremos batalha, imagens, "
+            "sons e dados em arquivo JSON."
         )
 
     elif opcao_menu == "0":
         # Exibe a mensagem de encerramento.
-        print("Encerrando a AveDex. Até logo!")
+        print(
+            "Encerrando a AveDex. Até logo!"
+        )
 
     else:
-        # Informa ao usuário quando uma opção inválida é digitada.
+        # Informa quando uma opção inválida é digitada.
         print(
-            "Opção inválida. Digite apenas 0, 1, 2, 3, 4 ou 5."
+            "Opção inválida. "
+            "Digite apenas 0, 1, 2, 3, 4 ou 5."
         )
