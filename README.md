@@ -108,5 +108,14 @@ Alimentação: Alimenta-se de lagartos, serpentes e outros pequenos vertebrados.
 Curiosidade: Constrói o ninho em uma árvore alta, usando ramos e gravetos, 
 geralmente botando apenas um ovo.
 
+## Testes manuais realizados aula 9
+- [x] Comparação entre duas aves existentes
+- [x] Comparação exibindo família, dieta e habitat
+- [x] Comparação exibindo peso e comprimento
+- [x] Comparação exibindo status e índice de conservação
+- [x] Tratamento de ID inexistente na comparação
+- [x] Comparação da mesma ave com ela mesma
+- [x] Opção inválida no menu
+
 ## Autor
 Wlquiria Mafado
