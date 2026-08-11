@@ -210,6 +210,151 @@ def valor_ou_indisponivel(valor, unidade=""):
     # Se não houver unidade, retornamos o valor como texto.
     return str(valor)
 
+def imprimir_linha_comparacao(rotulo, valor_1, valor_2):
+    # O rótulo identifica o campo comparado.
+    # Exemplo: "Família", "Dieta" ou "Peso".
+    #
+    # O símbolo :<18 significa:
+    # alinhar à esquerda em um espaço de 18 caracteres.
+    #
+    # Isso ajuda a deixar a saída parecida com uma tabela.
+
+    print(f"{rotulo:<18} | {str(valor_1):<25} | {str(valor_2):<25}")
+
+def exibir_comparacao_aves(ave_1, ave_2):
+    # Cabeçalho da comparação.
+    print()
+    print("=" * 78)
+    print("COMPARAÇÃO ENTRE AVES")
+    print("=" * 78)
+
+    # Primeira linha: mostra os nomes das duas aves.
+    imprimir_linha_comparacao(
+        "Campo",
+        ave_1["nome_popular"],
+        ave_2["nome_popular"]
+    )
+
+    print("-" * 78)
+
+    # Linhas de comparação textual.
+    imprimir_linha_comparacao(
+        "Nome científico",
+        ave_1.get("nome_cientifico"),
+        ave_2.get("nome_cientifico")
+    )
+
+    imprimir_linha_comparacao(
+        "Ordem",
+        ave_1.get("ordem"),
+        ave_2.get("ordem")
+    )
+
+    imprimir_linha_comparacao(
+        "Família",
+        ave_1.get("familia"),
+        ave_2.get("familia")
+    )
+
+    imprimir_linha_comparacao(
+        "Dieta",
+        ave_1.get("dieta_tipo"),
+        ave_2.get("dieta_tipo")
+    )
+
+    imprimir_linha_comparacao(
+        "Habitat",
+        ave_1.get("habitat"),
+        ave_2.get("habitat")
+    )
+
+    # Linhas de comparação numérica com unidade.
+    imprimir_linha_comparacao(
+        "Comprimento",
+        valor_ou_indisponivel(
+            ave_1.get("comprimento_cm"),
+            "cm"
+        ),
+        valor_ou_indisponivel(
+            ave_2.get("comprimento_cm"),
+            "cm"
+        )
+    )
+
+    imprimir_linha_comparacao(
+        "Peso",
+        valor_ou_indisponivel(
+            ave_1.get("peso_g"),
+            "g"
+        ),
+        valor_ou_indisponivel(
+            ave_2.get("peso_g"),
+            "g"
+        )
+    )
+
+    imprimir_linha_comparacao(
+        "Conservação",
+        ave_1.get("status_conservacao", "Não informado"),
+        ave_2.get("status_conservacao", "Não informado")
+    )
+
+    imprimir_linha_comparacao(
+        "Índice",
+        ave_1.get("indice_conservacao", "Não informado"),
+        ave_2.get("indice_conservacao", "Não informado")
+    )
+
+def escolher_ave(catalogo, mensagem):
+    # Mostra a lista de aves antes de pedir o ID.
+    listar_aves(catalogo)
+
+    # A mensagem muda conforme a situação.
+    # Exemplo: "Digite o ID da primeira ave".
+    id_escolhido = input(f"\n{mensagem}: ").strip()
+
+    # Reaproveitamos a função que já busca ave por ID.
+    ave_encontrada = buscar_ave_por_id(catalogo, id_escolhido)
+
+    # Se nenhuma ave for encontrada, avisamos e retornamos None.
+    if ave_encontrada is None:
+        print("Ave não encontrada. Confira o ID informado.")
+        return None
+
+    # Se encontrou, devolvemos a ave escolhida.
+    return ave_encontrada
+
+def comparar_duas_aves(catalogo):
+    print()
+    print("Escolha a primeira ave")
+
+    # Escolhe a primeira ave.
+    ave_1 = escolher_ave(
+        catalogo,
+        "Digite o ID da primeira ave"
+    )
+
+    # Se a primeira ave não foi encontrada, encerramos a função.
+    if ave_1 is None:
+        return
+
+    print()
+    print("Escolha a segunda ave")
+
+    # Escolhe a segunda ave.
+    ave_2 = escolher_ave(
+        catalogo,
+        "Digite o ID da segunda ave"
+    )
+
+    # Se a segunda ave não foi encontrada, encerramos a função.
+    if ave_2 is None:
+        return
+
+    # Se as duas aves existem, exibimos a comparação.
+    exibir_comparacao_aves(ave_1, ave_2)
+
+    
 # Lista contendo todas as aves cadastradas. Cada ave é representada por um dicionário.
 catalogo_aves = [
     {
