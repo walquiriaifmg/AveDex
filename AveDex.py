@@ -197,6 +197,19 @@ def tela_busca(catalogo):
             else:
                 exibir_detalhes_ave(ave_encontrada)
 
+def valor_ou_indisponivel(valor, unidade=""):
+    # Se o valor for None ou texto vazio, informamos isso ao usuário.
+    if valor is None or valor == "":
+        return "Não informado"
+
+    # Se uma unidade foi informada, adicionamos essa unidade ao valor.
+    # Exemplo: valor 23 com unidade "cm" vira "23 cm".
+    if unidade != "":
+        return f"{valor} {unidade}"
+
+    # Se não houver unidade, retornamos o valor como texto.
+    return str(valor)
+
 # Lista contendo todas as aves cadastradas. Cada ave é representada por um dicionário.
 catalogo_aves = [
     {
