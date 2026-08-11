@@ -200,100 +200,82 @@ def tela_busca(catalogo):
 # Lista contendo todas as aves cadastradas. Cada ave é representada por um dicionário.
 catalogo_aves = [
     {
-        # Identificador único da ave.
+        # ID único da ave.
         "id": 1,
 
-        # Nome popular da ave.
+        # Nomes da ave.
         "nome_popular": "Bem-te-vi",
-
-        # Nome científico.
         "nome_cientifico": "Pitangus sulphuratus",
 
-        # Classificação taxonômica.
+        # Classificação.
         "ordem": "Passeriformes",
         "familia": "Tyrannidae",
 
-        # Tipo de alimentação.
+        # Tipo principal de dieta.
         "dieta_tipo": "Onívora",
 
-        # Informações adicionais.
+        # Ambiente onde a ave costuma viver.
         "habitat": "Áreas abertas, cidades e bordas de florestas",
+
+        # Medidas aproximadas usadas na comparação.
+        "comprimento_cm": 23,
+        "peso_g": 68,
+
+        # Situação de conservação.
+        # Nesta versão didática, usamos texto simples.
+        "status_conservacao": "Pouco preocupante",
+
+        # Índice numérico que será útil futuramente na batalha.
+        # Quanto maior, maior será o nível de atenção na conservação.
+        "indice_conservacao": 1,
+
+        # Outros detalhes.
         "alimentacao": "Insetos, frutos e pequenos animais",
         "curiosidade": "Seu canto parece dizer o próprio nome."
     },
     {
         "id": 2,
+
         "nome_popular": "João-de-barro",
         "nome_cientifico": "Furnarius rufus",
+
         "ordem": "Passeriformes",
         "familia": "Furnariidae",
+
         "dieta_tipo": "Insetívora",
+
         "habitat": "Campos, cidades e áreas rurais",
+
+        "comprimento_cm": 20,
+        "peso_g": 49,
+
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1,
+
         "alimentacao": "Insetos e outros invertebrados",
         "curiosidade": "É conhecido por construir ninhos de barro."
     },
     {
         "id": 3,
+
         "nome_popular": "Canário-da-terra",
         "nome_cientifico": "Sicalis flaveola",
+
         "ordem": "Passeriformes",
         "familia": "Thraupidae",
+
         "dieta_tipo": "Granívora",
+
         "habitat": "Campos e áreas abertas",
+
+        "comprimento_cm": 13,
+        "peso_g": 20,
+
+        "status_conservacao": "Pouco preocupante",
+        "indice_conservacao": 1,
+
         "alimentacao": "Sementes e pequenos insetos",
         "curiosidade": "Possui canto forte e melodioso."
-    },
-    {
-        "id": 4,
-        "nome_popular": "Arara-azul",
-        "nome_cientifico": "Anodorhynchus hyacinthinus",
-        "ordem": "Psittaciformes",
-        "familia": "Psittacidae",
-        "dieta_tipo": "Frugívora e granívora",
-        "habitat": "Pantanal, Cerrado e áreas de palmeiras",
-        "alimentacao": "Especializada em frutos de palmeiras",
-        "curiosidade": "Encontra-se ameaçada de extinção devido à destruição de seus hábitats e ao "
-        "\ncomércio ilegal."
-    },
-    { "id": 5,
-        "nome_popular": "Águia-solitária",
-        "nome_cientifico": "Urubitinga solitaria",
-        "ordem": "Accipitriformes",
-        "familia": "Accipitridae",
-        "dieta_tipo": "Carnívora",
-        "habitat": "Habita florestas montanhosas úmidas e de pinheiros.",
-        "alimentacao": "Alimenta-se de lagartos, serpentes e outros pequenos vertebrados.",
-        "curiosidade": "Constrói o ninho em uma árvore alta, usando ramos e gravetos, "
-        "\ngeralmente botando apenas um ovo."
-    },
-    {"id": 6,
-        "nome_popular": "Corujinha-do-mato",
-        "nome_cientifico": "Megascops choliba",
-        "ordem": "Strigiformes",
-        "familia": "Strigidae",
-        "dieta_tipo": "Insectívora",
-        "habitat": "Habita cidades, parques urbanos e fazendas, e também habita capoeiras e beiras de"
-        "matas secas ou úmidas.",
-        "alimentacao": "Alimenta-se principalmente de grandes artrópodes, como gafanhotos, aranhas, "
-        "\nescorpiões e mariposas, especialmente próximos a postes de iluminação. "
-        "\nTambém consome pequenos vertebrados, como camundongos, morcegos, rãs e, ocasionalmente, minhocas.",
-        "curiosidade": "Voa sem criar grandes turbulências, formadoras dos ruídos característicos do "
-        "\nrufar de asas. Com isso, aproxima-se da presa em silêncio, tendo localizado-a antes pela visão "
-        "\nou pela audição apurada."
-    },
-    {
-        "id": 7,
-        "nome_popular": "Pica-pau-de-cabeça-amarela",
-        "nome_cientifico": "Celeus flavescens",
-        "ordem": "Piciformes",
-        "familia": "Picidae",
-        "dieta_tipo": "Insetívora",
-        "habitat": "Habita florestas tropicais e subtropicais, principalmente em áreas de cerrado e matas "
-        "secundárias.",
-        "alimentacao": "Alimenta-se principalmente de insetos, especialmente formigas e cupins, "
-        "\nque captura perfurando a madeira com seu bico forte e longo.",
-        "curiosidade": "É conhecido por seu comportamento territorial e por emitir sons altos e "
-        "distintivos, que podem ser ouvidos a longas distâncias."
     }
 ]
 
