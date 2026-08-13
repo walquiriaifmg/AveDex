@@ -96,6 +96,22 @@ def exibir_menu():
     for opcao in OPCOES_MENU:
         print(opcao)
 
+def criar_texto_busca(ave):
+    # Lista temporária que guardará os valores dos campos pesquisáveis.
+    valores = []
+
+    # Percorre cada campo definido em CAMPOS_BUSCA.
+    for campo in CAMPOS_BUSCA:
+        # Busca o valor do campo no dicionário da ave.
+        # Se o campo não existir, usa texto vazio.
+        valores.append(str(ave.get(campo, "")))
+
+    # Junta todos os valores em um único texto.
+    texto = " ".join(valores)
+
+    # Normaliza o texto para facilitar a busca.
+    return normalizar_texto(texto)
+
 
 # Função que lista todas as aves cadastradas.
 def listar_aves(catalogo):
@@ -121,31 +137,18 @@ def buscar_ave_por_id(catalogo, id_procurado):
 
 # Função que busca aves por diferentes campos.
 def buscar_aves(catalogo, termo_busca):
-    # Lista que armazenará os resultados.
+    # Lista que receberá as aves encontradas.
     resultados = []
 
     # Normaliza o termo digitado pelo usuário.
     termo = normalizar_texto(termo_busca)
 
-    # Percorre todas as aves cadastradas.
+    # Percorre todas as aves.
     for ave in catalogo:
+        # Cria o texto pesquisável da ave.
+        texto_busca = criar_texto_busca(ave)
 
-        # Campos utilizados na busca.
-        campos_busca = [
-            ave.get("nome_popular", ""),
-            ave.get("nome_cientifico", ""),
-            ave.get("familia", ""),
-            ave.get("ordem", ""),
-            ave.get("dieta_tipo", "")
-        ]
-
-        # Junta os campos em um único texto.
-        texto_busca = " ".join(campos_busca)
-
-        # Normaliza o texto para facilitar a busca.
-        texto_busca = normalizar_texto(texto_busca)
-
-        # Verifica se o termo está presente no texto.
+        # Se o termo estiver no texto, adiciona a ave aos resultados.
         if termo in texto_busca:
             resultados.append(ave)
 
