@@ -40,6 +40,27 @@ CAMPOS_COMPARACAO = [
     ("Índice", "indice_conservacao", "")
 ]
 
+# ======================================================================================
+# FUNÇÕES AUXILIARES
+# ======================================================================================
+
+def linha(caractere="=", largura=LARGURA_TELA):
+    # Retorna uma linha formada pela repetição de um caractere.
+    return caractere * largura
+
+
+def titulo(texto):
+    # Exibe um título padronizado.
+    print()
+    print(linha("="))
+    print(texto)
+    print(linha("="))
+
+
+def mensagem_aviso(texto):
+    # Exibe uma mensagem simples de aviso.
+    print(f"[AVISO] {texto}")
+
 
 # Função que pausa o programa até o usuário pressionar ENTER.
 def pausar():
@@ -83,10 +104,7 @@ def exibir_menu():
 
 # Função que lista todas as aves cadastradas.
 def listar_aves(catalogo):
-    print()
-    print("=" * 50)
-    print("AVES CADASTRADAS")
-    print("=" * 50)
+    titulo("AVES CADASTRADAS")
 
     # Percorre todas as aves do catálogo.
     for ave in catalogo:
