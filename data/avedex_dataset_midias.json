@@ -221,6 +221,56 @@
                 "som_url": "",
                 "imagem_url": ""
             }
+        },
+
+        {
+            "id": 9,
+            "slug": "arara_azul_grande",
+            "nome_popular": "Arara-azul-grande",
+            "nome_cientifico": "Anodorhynchus hyacinthinus",
+            "ordem": "Psittaciformes",
+            "familia": "Psittacidae",
+            "dieta_tipo": "Frugívoro",
+            "comprimento_cm": 100.0,
+            "peso_g": 1500.0,
+            "status_conservacao": "VU",
+            "indice_conservacao": 3,
+            "descricao": "Uma das maiores araras do mundo, conhecida por sua plumagem azul.",
+            "habitat": "Pantanal, cerrado e áreas de mata.",
+            "alimentacao": "Frutos, sementes e castanhas.",
+            "curiosidade": "É considerada uma das maiores araras do mundo.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            } 
+        },
+
+        {
+            "id": 10,
+            "slug": "tucano_toco_grande",
+            "nome_popular": "Tucano-toco-grande",
+            "nome_cientifico": "Ramphastos toco",
+            "ordem": "Piciformes",
+            "familia": "Ramphastidae",
+            "dieta_tipo": "Onívoro",
+            "comprimento_cm": 56.0,
+            "peso_g": 540.0,
+            "status_conservacao": "LC",
+            "indice_conservacao": 1,
+            "descricao": "Grande tucano encontrado em florestas e áreas abertas.",
+            "habitat": "Florestas e áreas abertas.",
+            "alimentacao": "Frutos, sementes e insetos.",
+            "curiosidade": "É conhecido por seu bico grande e colorido.",
+            "midia": {
+                "pagina_guia": null,
+                "fotografo": "",
+                "wikiaves_url": "",
+                "som_url": "",
+                "imagem_url": ""
+            }
         }
     ]
 }
