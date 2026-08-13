@@ -308,6 +308,21 @@ def valor_ou_indisponivel(valor, unidade=""):
     # Retorna o valor como texto.
     return str(valor)
 
+def cortar_texto(texto, tamanho=25):
+    # Se o texto não existir, retornamos uma mensagem padrão.
+    if texto is None:
+        return "Não informado"
+
+    # Garantimos que o valor será tratado como texto.
+    texto = str(texto).strip()
+
+    # Se o texto já couber no tamanho definido, retornamos sem alteração.
+    if len(texto) <= tamanho:
+        return texto
+
+    # Se for longo demais, cortamos e adicionamos reticências.
+    return texto[: tamanho - 3] + "..."
+
 
 # Função que imprime uma linha da tabela de comparação.
 def imprimir_linha_comparacao(
@@ -323,33 +338,22 @@ def imprimir_linha_comparacao(
         f"{str(valor_2):<25}"
     )
 
+def preparar_valor_comparacao(ave, campo, unidade):
+    # Busca o valor original da ave.
+    valor = ave.get(campo)
+
+    # Habitat costuma ser longo, então cortamos para não quebrar a tabela.
+    if campo == "habitat":
+        return cortar_texto(valor, 25)
+
+    # Os demais campos usam a função padrão.
+    return valor_ou_indisponivel(valor, unidade)
 
 # Função que exibe a comparação entre duas aves.
 def exibir_comparacao_aves(ave_1, ave_2):
-    # Cabeçalho da comparação.
-    print()
-    print(linha("=", 78))
-    print("COMPARAÇÃO ENTRE AVES")
-    print(linha("=", 78))
-
-    # Primeira linha com o nome das aves.
-    imprimir_linha_comparacao(
-        "Campo",
-        ave_1["nome_popular"],
-        ave_2["nome_popular"]
-    )
-
-    print(linha("-", 78))
-
-    # Percorre todos os campos configurados em CAMPOS_COMPARACAO.
     for rotulo, campo, unidade in CAMPOS_COMPARACAO:
-        # Obtém e formata o valor da primeira ave.
-        valor_1 = valor_ou_indisponivel(ave_1.get(campo), unidade)
-
-        # Obtém e formata o valor da segunda ave.
-        valor_2 = valor_ou_indisponivel(ave_2.get(campo), unidade)
-
-        # Imprime a linha já formatada.
+        valor_1 = preparar_valor_comparacao(ave_1, campo, unidade)
+        valor_2 = preparar_valor_comparacao(ave_2, campo, unidade)
         imprimir_linha_comparacao(rotulo, valor_1, valor_2)
 
 
@@ -383,52 +387,7 @@ def escolher_ave(catalogo, mensagem):
 
 # Função que compara duas aves.
 def comparar_duas_aves(catalogo):
-    print()
-    print("Escolha a primeira ave")
-
-    # Escolhe a primeira ave.
-    ave_1 = escolher_ave(
-        catalogo,
-        "Digite o ID da primeira ave"
-    )
-
-    # Se a primeira ave não foi encontrada,
-    # encerramos a função.
-    if ave_1 is None:
-        return
-
-    print()
-    print("Escolha a segunda ave")
-
-    # Escolhe a segunda ave.
-    ave_2 = escolher_ave(
-        catalogo,
-        "Digite o ID da segunda ave"
-    )
-
-    # Se a segunda ave não foi encontrada,
-    # encerramos a função.
-    if ave_2 is None:
-        return
-
-    # Verifica se o usuário escolheu a mesma ave
-    # nas duas opções.
-    if ave_1["id"] == ave_2["id"]:
-        print()
-        print(
-            "AVISO: você escolheu a mesma ave duas vezes."
-        )
-        print(
-            "Escolha duas aves diferentes para comparar."
-        )
-        return
-
-    # Se as aves forem diferentes,
-    # exibe a comparação.
-    exibir_comparacao_aves(
-        ave_1,
-        ave_2
-    )
+    pass
 
 
 # ============================================================
