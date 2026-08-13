@@ -1,21 +1,20 @@
 # AveDex
-Catálogo interativo de aves desenvolvido na disciplina de
+A AveDex é um catálogo interativo de aves desenvolvido na disciplina de
 Boas Práticas de Programação.
-## Funcionalidades atuais
-- menu em repetição;
-- mensagem personalizada;
-- apresentação inicial de uma ave;
-- tratamento de opção inválida.
 ## Como executar
 ```bash
-python avedex.py
+python main.py
 ```
-## Fontes dos dados
-- Nome da instituição ou site: https://www.wikiaves.com.br/index.php
-
-## Evolução do projeto
-Nesta versão, as aves foram organizadas em uma lista de
-dicionários e as funcionalidades foram separadas em funções. Além disso foram adicionadas novas aves.
+## Estrutura do projeto
+- `main.py`: inicia o programa.
+- `src/avedex/app.py`: controla o fluxo principal.
+- `src/avedex/interface.py`: mostra abertura e menu.
+- `src/avedex/dados.py`: carrega o dataset JSON.
+- `src/avedex/catalogo.py`: lista, busca e mostra detalhes.
+- `src/avedex/comparacao.py`: compara duas aves.
+- `src/avedex/creditos.py`: mostra informações e fontes.
+- `src/avedex/utils.py`: reúne funções auxiliares.
+- `data/avedex_dataset_midias.json`: dados das aves.
 
 ## Testes manuais realizados aula 6
 - [x] Listagem das aves
@@ -117,7 +116,7 @@ geralmente botando apenas um ovo.
 - [x] Comparação da mesma ave com ela mesma
 - [x] Opção inválida no menu
 
-## Testes de regressão
+## Testes de regressão aula 10
 - [x] Listar aves
 - [x] Buscar por parte do nome
 - [x] Buscar por família
@@ -128,6 +127,16 @@ geralmente botando apenas um ovo.
 - [x] Tratar ID inexistente
 - [x] Tratar opção inválida no menu
 - [x] Encerrar o programa
+
+## Testes manuais realizados na aula 11
+- [x] Execução com `python main.py`
+- [x] Carregamento das aves pelo JSON
+- [x] Listagem das aves
+- [x] Busca textual
+- [x] Detalhes por ID
+- [x] Comparação entre aves
+- [x] Créditos e fontes
+- [x] Encerramento do programa
 
 ## Autor
 Wlquiria Mafado
