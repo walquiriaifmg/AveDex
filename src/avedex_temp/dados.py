@@ -3,7 +3,7 @@ from pathlib import Path
 
 
 # __file__ representa o caminho deste arquivo dados.py.
-# Como dados.py está em src/avedex/dados.py, usamos parents[2]
+# Como dados.py está em src/AveDex/dados.py, usamos parents[2]
 # para chegar à raiz do projeto.
 CAMINHO_PROJETO = Path(__file__).resolve().parents[2]
 
@@ -31,7 +31,7 @@ def carregar_dataset(caminho=CAMINHO_DATASET):
 
 def carregar_aves():
     """
-    Carrega o dataset e retorna somente a lista de aves.
+    Carrega o dataset completo e retorna apenas as aves.
     """
 
     # Carrega o dataset completo.
@@ -52,3 +52,16 @@ def obter_fontes_globais():
 
     # Retorna as fontes gerais cadastradas no JSON.
     return dataset.get("fontes_globais", {})
+
+
+# ============================================================================
+# TESTE DO ARQUIVO
+# ============================================================================
+
+if __name__ == "__main__":
+    aves = carregar_aves()
+
+    print(f"Total de aves carregadas: {len(aves)}")
+
+    for ave in aves:
+        print(ave["nome_popular"])
