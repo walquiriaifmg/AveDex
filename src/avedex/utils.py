@@ -19,6 +19,9 @@ def mensagem_aviso(texto):
     # Exibe uma mensagem de aviso.
     print(f"[AVISO] {texto}")
 
+def pausar():
+    # Pausa o programa para o usuário conseguir ler a tela.
+    input("\nPressione ENTER para voltar ao menu...")
 
 def normalizar_texto(texto):
     # Converte para texto.
@@ -38,11 +41,6 @@ def normalizar_texto(texto):
     )
 
     return texto
-
-
-def pausar():
-    # Pausa a execução para o usuário conseguir ler a tela.
-    input("\nPressione ENTER para voltar ao menu...")
 
 
 def valor_ou_indisponivel(valor, unidade=""):
