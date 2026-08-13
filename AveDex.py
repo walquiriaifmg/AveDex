@@ -90,16 +90,11 @@ def normalizar_texto(texto):
 
 # Função que exibe o menu principal.
 def exibir_menu():
-    print()
-    print("=" * 50)
-    print("AVEDEX - MENU PRINCIPAL")
-    print("=" * 50)
-    print("1 - Listar aves")
-    print("2 - Buscar ave")
-    print("3 - Ver detalhes de uma ave")
-    print("4 - Comparar duas aves")
-    print("5 - Sobre a AveDex")
-    print("0 - Sair")
+    # Exibe o título do menu.
+    titulo("AVEDEX - MENU PRINCIPAL")
+    # Percorre a lista de opções e imprime uma por uma.
+    for opcao in OPCOES_MENU:
+        print(opcao)
 
 
 # Função que lista todas as aves cadastradas.
