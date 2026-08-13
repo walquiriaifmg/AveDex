@@ -328,105 +328,29 @@ def imprimir_linha_comparacao(
 def exibir_comparacao_aves(ave_1, ave_2):
     # Cabeçalho da comparação.
     print()
-    print("=" * 78)
+    print(linha("=", 78))
     print("COMPARAÇÃO ENTRE AVES")
-    print("=" * 78)
+    print(linha("=", 78))
 
-    # Mostra os nomes das duas aves.
+    # Primeira linha com o nome das aves.
     imprimir_linha_comparacao(
         "Campo",
         ave_1["nome_popular"],
         ave_2["nome_popular"]
     )
 
-    print("-" * 78)
+    print(linha("-", 78))
 
-    # Comparação do nome científico.
-    imprimir_linha_comparacao(
-        "Nome científico",
-        ave_1.get("nome_cientifico"),
-        ave_2.get("nome_cientifico")
-    )
+    # Percorre todos os campos configurados em CAMPOS_COMPARACAO.
+    for rotulo, campo, unidade in CAMPOS_COMPARACAO:
+        # Obtém e formata o valor da primeira ave.
+        valor_1 = valor_ou_indisponivel(ave_1.get(campo), unidade)
 
-    # Comparação da ordem.
-    imprimir_linha_comparacao(
-        "Ordem",
-        ave_1.get("ordem"),
-        ave_2.get("ordem")
-    )
+        # Obtém e formata o valor da segunda ave.
+        valor_2 = valor_ou_indisponivel(ave_2.get(campo), unidade)
 
-    # Comparação da família.
-    imprimir_linha_comparacao(
-        "Família",
-        ave_1.get("familia"),
-        ave_2.get("familia")
-    )
-
-    # Comparação da dieta.
-    imprimir_linha_comparacao(
-        "Dieta",
-        ave_1.get("dieta_tipo"),
-        ave_2.get("dieta_tipo")
-    )
-
-    # Comparação do habitat.
-    imprimir_linha_comparacao(
-        "Habitat",
-        ave_1.get("habitat"),
-        ave_2.get("habitat")
-    )
-
-    # Comparação do comprimento.
-    imprimir_linha_comparacao(
-        "Comprimento",
-        valor_ou_indisponivel(
-            ave_1.get("comprimento_cm"),
-            "cm"
-        ),
-        valor_ou_indisponivel(
-            ave_2.get("comprimento_cm"),
-            "cm"
-        )
-    )
-
-    # Comparação do peso.
-    imprimir_linha_comparacao(
-        "Peso",
-        valor_ou_indisponivel(
-            ave_1.get("peso_g"),
-            "g"
-        ),
-        valor_ou_indisponivel(
-            ave_2.get("peso_g"),
-            "g"
-        )
-    )
-
-    # Comparação do status de conservação.
-    imprimir_linha_comparacao(
-        "Conservação",
-        ave_1.get(
-            "status_conservacao",
-            "Não informado"
-        ),
-        ave_2.get(
-            "status_conservacao",
-            "Não informado"
-        )
-    )
-
-    # Comparação do índice de conservação.
-    imprimir_linha_comparacao(
-        "Índice",
-        ave_1.get(
-            "indice_conservacao",
-            "Não informado"
-        ),
-        ave_2.get(
-            "indice_conservacao",
-            "Não informado"
-        )
-    )
+        # Imprime a linha já formatada.
+        imprimir_linha_comparacao(rotulo, valor_1, valor_2)
 
 
 # Função que permite escolher uma ave.
